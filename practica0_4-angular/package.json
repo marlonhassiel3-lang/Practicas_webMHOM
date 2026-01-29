@@ -1,5 +1,5 @@
 {
-  "name": "practica04-angular",
+  "name": "practica0-4-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:practica04-angular": "node dist/practica04-angular/server/server.mjs"
+    "serve:ssr:practica0_4-angular": "node dist/practica0_4-angular/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,

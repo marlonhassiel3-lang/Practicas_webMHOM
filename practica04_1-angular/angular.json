@@ -3,11 +3,11 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "a5729be7-94ac-41b6-8751-9668347e2664"
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
-    "practica04-angular": {
+    "practica04_1-angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -25,9 +25,11 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+           "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css",
+"src/styles.css"],
+"scripts": [
+"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -62,10 +64,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "practica04-angular:build:production"
+              "buildTarget": "practica04_1-angular:build:production"
             },
             "development": {
-              "buildTarget": "practica04-angular:build:development"
+              "buildTarget": "practica04_1-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
