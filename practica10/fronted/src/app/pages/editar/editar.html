@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2>Editar Videojuego</h2>
+
+  <form (ngSubmit)="actualizarGame()">
+
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="game.nombre"
+             name="nombre"
+             required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Genero</label>
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="game.genero"
+             name="genero"
+             required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Precio</label>
+      <input type="number"
+             class="form-control"
+             [(ngModel)]="game.precio"
+             name="precio"
+             required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">URL Imagen</label>
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="game.imagenUrl"
+             name="imagenUrl"
+             required>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+      Actualizar
+    </button>
+
+    <a routerLink="/games" class="btn btn-secondary ms-2">
+      Cancelar
+    </a>
+
+  </form>
+</div>

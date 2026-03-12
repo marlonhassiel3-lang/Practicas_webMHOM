@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+/* COLOR MORADO TIPO BARNEY */
+
+.footer{
+background:#7b2cbf;
+padding:40px 0;
+}
+
+.footer-link{
+color:white;
+text-decoration:none;
+}
+
+.footer-link:hover{
+text-decoration:underline;
+}
+
+.btn-outline-primary{
+color:#7b2cbf;
+border-color:#7b2cbf;
+}
+
+.btn-outline-primary:hover{
+background:#7b2cbf;
+color:white;
+}
+
+.hero{
+    height:350px;
+    background:linear-gradient(rgba(123,44,191,0.85),rgba(123,44,191,0.85)),
+    url("https://picsum.photos/1600/600");
+    background-size:cover;
+    background-position:center;
+}
+
+:root{
+  --bs-primary: #7b2cbf;
+}
+
+/* Navbar */
+.navbar{
+  background-color:#7b2cbf !important;
+}
+
+/* Botones */
+.btn-primary{
+  background-color:#7b2cbf;
+  border-color:#7b2cbf;
+}
+
+.btn-primary:hover{
+  background-color:#5a189a;
+  border-color:#5a189a;
+}
+
+/* Fondo general */
+body{
+  background-color:#f5f5f5;
+}
+
+/* Animación cards */
+.card{
+  border:none;
+}
+
+.card:hover{
+  transform:scale(1.02);
+  transition:0.2s;
+}

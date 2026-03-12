@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2>Registrar Alumno</h2>
+
+  <form #formAlumno="ngForm" (ngSubmit)="guardarAlumno(formAlumno)">
+
+    <div class="mb-3">
+      <label>Nombre:</label>
+      <input type="text" class="form-control" ngModel name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Edad:</label>
+      <input type="number" class="form-control" ngModel name="edad" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Carrera:</label>
+      <input type="text" class="form-control" ngModel name="carrera" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      Guardar
+    </button>
+
+  </form>
+</div>

@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h2>Lista de Videojuegos</h2>
+
+  <a routerLink="/nuevo" class="btn btn-primary mb-3">
+    Nuevo Videojuego
+  </a>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Genero</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let juego of listaGames">
+        <td>
+          <img [src]="juego.imagenUrl"
+               width="80"
+               class="img-thumbnail">
+        </td>
+        <td>{{ juego.nombre }}</td>
+        <td>{{ juego.genero }}</td>
+        <td>${{ juego.precio }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2"
+                  (click)="editarGame(juego)">
+            Editar
+          </button>
+
+          <button class="btn btn-danger btn-sm"
+                  (click)="eliminarGame(juego._id)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
