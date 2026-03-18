@@ -1,0 +1,47 @@
+<div class="container mt-5">
+
+<h2>Crear Nuevo Evento</h2>
+
+<div class="card shadow p-4">
+
+<form (ngSubmit)="guardarEvento()">
+
+<div class="mb-3">
+<label>Nombre del evento</label>
+<input type="text" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Descripción</label>
+<textarea class="form-control" rows="3" required></textarea>
+</div>
+
+<div class="mb-3">
+<label>Fecha</label>
+<input type="date" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Lugar</label>
+<input type="text" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Organizador</label>
+<input type="text" class="form-control" value="Prof. Xóchitl Ruano Duarte" readonly>
+</div>
+
+<div class="mb-3">
+<label>Imagen (URL)</label>
+<input type="text" class="form-control" placeholder="https://...">
+</div>
+
+<button class="btn btn-success w-100">
+Publicar evento
+</button>
+
+</form>
+
+</div>
+
+</div>

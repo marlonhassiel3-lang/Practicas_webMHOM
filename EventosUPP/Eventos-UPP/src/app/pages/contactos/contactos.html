@@ -1,0 +1,35 @@
+<div class="container mt-5">
+
+<h2>Contacto con el Organizador</h2>
+
+<div class="card shadow p-4">
+
+<h4>Evento: Taller de Angular</h4>
+<p><strong>Organizador:</strong> Profesora Xóchitl Ruano Duarte</p>
+
+<form (ngSubmit)="enviarMensaje()">
+
+<div class="mb-3">
+<label>Nombre</label>
+<input type="text" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Correo</label>
+<input type="email" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Mensaje</label>
+<textarea class="form-control" rows="4" required></textarea>
+</div>
+
+<button class="btn btn-primary w-100">
+Enviar mensaje
+</button>
+
+</form>
+
+</div>
+
+</div>
