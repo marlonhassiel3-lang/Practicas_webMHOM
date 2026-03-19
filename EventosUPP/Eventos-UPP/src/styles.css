@@ -67,3 +67,23 @@ body{
   transform:scale(1.02);
   transition:0.2s;
 }
+
+.panel-profesor-btn {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.panel-profesor-btn .btn {
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.panel-profesor-btn .btn:hover {
+  transform: scale(1.05);
+  background-color: #343a40;
+}
