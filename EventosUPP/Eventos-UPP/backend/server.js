@@ -1,8 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+const eventosRoutes = require('./routes/eventos.routes');
+dotenv.config();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -10,6 +15,7 @@ app.use(express.json());
 mongoose.connect('mongodb+srv://Admin:AvisosUppadmin@cluster0.gxnhoto.mongodb.net/eventosDB?retryWrites=true&w=majority')
 .then(() => console.log('Mongo conectado'))
 .catch(err => console.log(err));
+
 
 // 👉 RUTA DE EVENTOS (AGREGADA)
 app.use('/api/eventos', require('./routes/eventos'));
