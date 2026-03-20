@@ -1,0 +1,64 @@
+<div class="mb-4">
+  <h2 class="fw-bold">Dashboard</h2>
+  <p class="text-muted mb-0">Resumen general del sistema</p>
+</div>
+
+<div class="row g-4 mb-4">
+  <div class="col-md-3">
+    <div class="card admin-card p-3">
+      <h6 class="text-muted">Profesores</h6>
+      <h3 class="mb-0">12</h3>
+      <small class="text-success">+2 este mes</small>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card admin-card p-3">
+      <h6 class="text-muted">Publicaciones</h6>
+      <h3 class="mb-0">28</h3>
+      <small class="text-warning">4 pendientes</small>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card admin-card p-3">
+      <h6 class="text-muted">Avisos</h6>
+      <h3 class="mb-0">9</h3>
+      <small class="text-info">3 activos</small>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card admin-card p-3">
+      <h6 class="text-muted">Solicitudes</h6>
+      <h3 class="mb-0">15</h3>
+      <small class="text-danger">2 urgentes</small>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card admin-card p-4 h-100">
+      <h5>Profesores</h5>
+      <p class="text-muted">Gestiona usuarios autorizados para publicar eventos.</p>
+      <button routerLink="/admin/profesores" class="btn btn-dark w-100" >Ir a profesores</button>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card admin-card p-4 h-100">
+      <h5>Publicaciones</h5>
+      <p class="text-muted">Revisa publicaciones, aprueba o elimina contenido.</p>
+      <button routerLink="/admin/publicaciones" class="btn btn-dark w-100" >Revisar publicaciones</button>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card admin-card p-4 h-100">
+      <h5>Configuración</h5>
+      <p class="text-muted">Personaliza la identidad visual y datos del sistema.</p>
+      <button routerLink="/admin/configuracion" class="btn btn-dark w-100" >Abrir configuración</button>
+    </div>
+  </div>
+</div>

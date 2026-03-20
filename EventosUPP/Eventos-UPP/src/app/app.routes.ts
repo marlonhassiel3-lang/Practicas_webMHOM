@@ -30,5 +30,44 @@ export const routes: Routes = [
 {
   path: 'login',
   loadComponent: () => import('./pages/login/login').then(m => m.Login)
+},
+{
+  path: 'admin/login',
+  loadComponent: () => import('./pages/admin/login/login').then(m => m.Login)
+},
+{
+  path: 'admin',
+  loadComponent: () => import('./pages/admin/layout/layout').then(m => m.Layout),
+  children: [
+    {
+      path: '',
+      redirectTo: 'dashboard',
+      pathMatch: 'full'
+    },
+    {
+      path: 'dashboard',
+      loadComponent: () => import('./pages/admin/dashboard/dashboard').then(m => m.Dashboard)
+    },
+    {
+      path: 'profesores',
+      loadComponent: () => import('./pages/admin/profesores/profesores').then(m => m.Profesores)
+    },
+    {
+      path: 'publicaciones',
+      loadComponent: () => import('./pages/admin/publicaciones/publicaciones').then(m => m.Publicaciones)
+    },
+    {
+      path: 'avisos',
+      loadComponent: () => import('./pages/admin/avisos/avisos').then(m => m.Avisos)
+    },
+    {
+      path: 'solicitudes',
+      loadComponent: () => import('./pages/admin/solicitudes/solicitudes').then(m => m.Solicitudes)
+    },
+    {
+      path: 'configuracion',
+      loadComponent: () => import('./pages/admin/configuracion/configuracion').then(m => m.Configuracion)
+    }
+  ]
 }
 ];
