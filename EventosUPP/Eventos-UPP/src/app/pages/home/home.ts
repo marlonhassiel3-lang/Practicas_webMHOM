@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Api } from '../../services/api';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
   animations: [
@@ -25,6 +28,14 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ])
 ]
 })
-export class Home {
+export class Home implements OnInit {
+  eventos: any[] = [];
 
+  constructor(private api: Api) {}
+
+  ngOnInit() {
+    this.api.getEventos().subscribe((data: any[]) => {
+      this.eventos = data;
+    });
+  }
 }
