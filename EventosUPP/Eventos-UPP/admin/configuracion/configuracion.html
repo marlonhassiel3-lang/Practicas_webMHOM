@@ -1,6 +1,11 @@
 <div class="mb-4">
-  <h2 class="fw-bold mb-1">Configuración del Sistema</h2>
-  <p class="text-muted mb-0">Identidad visual y datos generales del portal</p>
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <h2 class="fw-bold mb-1">Configuración del Sistema</h2>
+      <p class="text-muted mb-0">Identidad visual y datos generales del portal</p>
+    </div>
+    <button class="btn btn-dark" (click)="guardar()">Guardar Cambios</button>
+  </div>
 </div>
 
 <div class="card admin-card p-4 mb-4">
@@ -9,12 +14,12 @@
   <div class="row g-3">
     <div class="col-md-6">
       <label class="form-label">Nombre del portal</label>
-      <input type="text" class="form-control" value="Eventos UPP" disabled>
+      <input type="text" class="form-control" [(ngModel)]="nombrePortal">
     </div>
 
     <div class="col-md-6">
       <label class="form-label">Correo de contacto</label>
-      <input type="email" class="form-control" value="eventos@upp.edu.mx" disabled>
+      <input type="email" class="form-control" [(ngModel)]="correo">
     </div>
 
     <div class="col-md-6">
@@ -33,8 +38,8 @@
   <h5 class="mb-3">Apariencia</h5>
   <p class="text-muted mb-3">Ajustes visuales del panel administrativo</p>
   <div class="d-flex gap-2 flex-wrap">
-    <button class="btn btn-outline-dark" disabled>Modo claro</button>
-    <button class="btn btn-dark" disabled>Modo oscuro</button>
-    <button class="btn btn-outline-primary" disabled>Restaurar diseño</button>
+    <button class="btn btn-outline-dark" (click)="setTema('Modo claro')">Modo claro</button>
+    <button class="btn btn-dark" (click)="setTema('Modo oscuro')">Modo oscuro</button>
+    <button class="btn btn-outline-primary" (click)="setTema('Estándar')">Restaurar diseño</button>
   </div>
 </div>

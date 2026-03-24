@@ -1,44 +1,50 @@
 <div class="mb-4">
   <h2 class="fw-bold">Dashboard</h2>
-  <p class="text-muted mb-0">Resumen general del sistema</p>
+  <p class="text-muted mb-0">Resumen y estado vivo del sistema</p>
 </div>
 
-<div class="row g-4 mb-4">
+<div *ngIf="cargando" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+
+<div class="row g-4 mb-4" *ngIf="!cargando">
   <div class="col-md-3">
     <div class="card admin-card p-3">
-      <h6 class="text-muted">Profesores</h6>
-      <h3 class="mb-0">12</h3>
-      <small class="text-success">+2 este mes</small>
+      <h6 class="text-muted">Usuarios Registrados</h6>
+      <h3 class="mb-0">{{ stats.usuarios }}</h3>
+      <small class="text-success">Total en sistema</small>
     </div>
   </div>
 
   <div class="col-md-3">
     <div class="card admin-card p-3">
-      <h6 class="text-muted">Publicaciones</h6>
-      <h3 class="mb-0">28</h3>
-      <small class="text-warning">4 pendientes</small>
+      <h6 class="text-muted">Eventos/Publicaciones</h6>
+      <h3 class="mb-0">{{ stats.eventos }}</h3>
+      <small class="text-warning">En base de datos</small>
     </div>
   </div>
 
   <div class="col-md-3">
     <div class="card admin-card p-3">
-      <h6 class="text-muted">Avisos</h6>
-      <h3 class="mb-0">9</h3>
-      <small class="text-info">3 activos</small>
+      <h6 class="text-muted">Avisos Importantes</h6>
+      <h3 class="mb-0">{{ stats.avisos }}</h3>
+      <small class="text-info">Publicados en home</small>
     </div>
   </div>
 
   <div class="col-md-3">
     <div class="card admin-card p-3">
-      <h6 class="text-muted">Solicitudes</h6>
-      <h3 class="mb-0">15</h3>
-      <small class="text-danger">2 urgentes</small>
+      <h6 class="text-muted">Inscripciones</h6>
+      <h3 class="mb-0">{{ stats.solicitudes }}</h3>
+      <small class="text-danger">A eventos recientes</small>
     </div>
   </div>
 </div>
 
 <div class="row g-4">
-  <div class="col-md-4">
+  <div class="col-md-4" *ngIf="auth.isAdmin()">
     <div class="card admin-card p-4 h-100">
       <h5>Profesores</h5>
       <p class="text-muted">Gestiona usuarios autorizados para publicar eventos.</p>
@@ -49,12 +55,12 @@
   <div class="col-md-4">
     <div class="card admin-card p-4 h-100">
       <h5>Publicaciones</h5>
-      <p class="text-muted">Revisa publicaciones, aprueba o elimina contenido.</p>
+      <p class="text-muted">Revisa publicaciones, aprueba o filtra contenido vivo en la web.</p>
       <button routerLink="/admin/publicaciones" class="btn btn-dark w-100" >Revisar publicaciones</button>
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4" *ngIf="auth.isAdmin()">
     <div class="card admin-card p-4 h-100">
       <h5>Configuración</h5>
       <p class="text-muted">Personaliza la identidad visual y datos del sistema.</p>

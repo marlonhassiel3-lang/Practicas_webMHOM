@@ -1,0 +1,49 @@
+<div class="admin-login-wrap">
+  <div class="card admin-card p-4">
+    <div class="text-center mb-4">
+      <span class="badge rounded-pill admin-badge mb-3">Acceso Administrativo</span>
+      <h2 class="fw-bold mb-2">Super Administrador</h2>
+      <p class="text-muted mb-0">Administración general de la plataforma</p>
+    </div>
+
+    <!-- Alert for login errors -->
+    <div *ngIf="errorLogin" class="alert alert-danger p-2 text-center" role="alert" style="font-size: 0.9rem;">
+      {{ errorLogin }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="mb-3">
+        <label class="form-label">Correo institucional</label>
+        <input 
+          type="email" 
+          name="email"
+          [(ngModel)]="credenciales.email" 
+          class="form-control" 
+          placeholder="admin@upp.edu.mx"
+          required
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Contraseña</label>
+        <input 
+          type="password" 
+          name="password"
+          [(ngModel)]="credenciales.password" 
+          class="form-control" 
+          placeholder="••••••••"
+          required
+        >
+      </div>
+
+      <button type="submit" class="btn btn-dark w-100 mb-2" [disabled]="loginForm.invalid || cargando">
+        <span *ngIf="!cargando">Entrar al panel</span>
+        <span *ngIf="cargando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
+
+      <a routerLink="/" class="btn btn-outline-secondary w-100" [class.disabled]="cargando">
+        Volver al sitio
+      </a>
+    </form>
+  </div>
+</div>

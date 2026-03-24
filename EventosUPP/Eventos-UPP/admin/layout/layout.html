@@ -7,11 +7,12 @@
 
     <nav class="nav flex-column gap-2">
       <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
-      <a routerLink="/admin/profesores" routerLinkActive="active" class="nav-link">Profesores</a>
+      <a routerLink="/admin/profesores" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()">Profesores/Admin</a>
       <a routerLink="/admin/publicaciones" routerLinkActive="active" class="nav-link">Publicaciones</a>
-      <a routerLink="/admin/avisos" routerLinkActive="active" class="nav-link">Avisos</a>
-      <a routerLink="/admin/solicitudes" routerLinkActive="active" class="nav-link">Solicitudes</a>
-      <a routerLink="/admin/configuracion" routerLinkActive="active" class="nav-link">Configuración</a>
+      <a routerLink="/admin/avisos" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()">Avisos</a>
+      <a routerLink="/admin/solicitudes" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()">Solicitudes</a>
+      <a routerLink="/admin/configuracion" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()">Configuración</a>
+      <a routerLink="/profesor/mis-eventos" class="nav-link" *ngIf="auth.isProfesor()">Mis Eventos Físicos</a>
       <a routerLink="/" class="nav-link mt-3">Volver al sitio</a>
     </nav>
   </aside>
@@ -27,9 +28,9 @@
           <small class="text-muted">Gestión general de la plataforma</small>
         </div>
       </div>
-      <a routerLink="/admin/login" class="btn btn-outline-dark btn-sm">
+      <button (click)="logout()" class="btn btn-outline-dark btn-sm">
         Salir
-      </a>
+      </button>
      
     </header>
 
