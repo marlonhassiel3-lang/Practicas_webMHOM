@@ -1,0 +1,88 @@
+<div class="container mt-5 mb-5">
+
+  <h2 class="mb-4 fw-bold">Crear Nuevo Evento</h2>
+
+  <!-- Confirmación exitosa -->
+  <div class="alert alert-success" *ngIf="enviado">
+    ✅ Evento enviado para revisión del administrador. Redirigiendo...
+  </div>
+
+  <!-- Error -->
+  <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+  <div class="card shadow p-4" *ngIf="!enviado">
+    <form (ngSubmit)="guardarEvento()">
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Nombre del evento <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" [(ngModel)]="evento.titulo" name="titulo" required placeholder="Ej. Hackathon Universitario">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Fecha <span class="text-danger">*</span></label>
+          <input type="date" class="form-control" [(ngModel)]="evento.fecha" name="fecha" required>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Descripción <span class="text-danger">*</span></label>
+          <textarea class="form-control" rows="3" [(ngModel)]="evento.descripcion" name="descripcion" required placeholder="Describe el evento brevemente..."></textarea>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Lugar / Ubicación</label>
+          <input type="text" class="form-control" [(ngModel)]="evento.ubicacion" name="ubicacion" placeholder="Ej. Auditorio Principal">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Cupo Máximo</label>
+          <input type="number" class="form-control" [(ngModel)]="evento.cupoMaximo" name="cupoMaximo" min="1" placeholder="50">
+        </div>
+
+        <div class="col-md-8">
+          <label class="form-label">Organizador <span class="text-danger">*</span></label>
+          <select class="form-select" [(ngModel)]="evento.organizador_id" name="organizador_id" required>
+            <option value="" disabled>— Selecciona un profesor —</option>
+            @for (prof of profesores; track prof._id) {
+              <option [value]="prof._id">{{ prof.nombre }} ({{ prof.departamento || prof.email }})</option>
+            }
+          </select>
+          <div class="form-text text-muted" *ngIf="profesores.length === 0">Cargando lista de profesores...</div>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Categoría <span class="text-danger">*</span></label>
+          <select class="form-select" [(ngModel)]="evento.categoria" name="categoria" required>
+            <option value="" disabled>— Selecciona categoría —</option>
+            <option value="Conferencias">Conferencias</option>
+            <option value="Talleres">Talleres</option>
+            <option value="Cultura">Cultura</option>
+            <option value="Deportes">Deportes</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Estado inicial</label>
+          <select class="form-select" [(ngModel)]="evento.estado" name="estado">
+            <option value="REVISION">En Revisión (requiere aprobación)</option>
+            <option value="PUBLICADO">Publicado directamente</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Imagen (URL)</label>
+          <input type="text" class="form-control" [(ngModel)]="evento.imagen" name="imagen" placeholder="https://images.unsplash.com/...">
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-success" [disabled]="cargando">
+          {{ cargando ? 'Publicando...' : 'Publicar Evento' }}
+        </button>
+        <a routerLink="/profesor" class="btn btn-outline-secondary">Cancelar</a>
+      </div>
+
+    </form>
+  </div>
+
+</div>
