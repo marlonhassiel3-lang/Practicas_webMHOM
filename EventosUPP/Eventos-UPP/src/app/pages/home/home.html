@@ -395,3 +395,12 @@ Ver evento
 </div>
 
 </div>
+
+<h1>Eventos</h1>
+
+<div *ngFor="let evento of eventos">
+  <h3>{{evento.titulo}}</h3>
+  <p>{{evento.descripcion}}</p>
+  <small>{{evento.fecha}}</small>
+  <hr>
+</div>

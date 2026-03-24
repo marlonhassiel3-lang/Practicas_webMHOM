@@ -1,43 +1,97 @@
-<div class="row">
-
-  <div class="col-md-8">
-
-    <h2>Conferencia de Inteligencia Artificial</h2>
-
-    <img src="https://picsum.photos/800/300"
-         class="img-fluid rounded mb-3">
-
-    <p>
-      Esta conferencia abordará los avances más recientes en inteligencia artificial
-      y cómo está transformando diferentes industrias como la medicina, la educación
-      y la tecnología.
-    </p>
-
-    <p>
-      Participarán expertos invitados y se presentarán casos de estudio reales
-      sobre implementación de IA.
-    </p>
-
+<div *ngIf="cargando" class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+  <div class="text-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"></div>
+    <p class="mt-3 text-muted fw-light fs-5">Cargando evento...</p>
   </div>
+</div>
 
-  <div class="col-md-4">
+<div *ngIf="error && !cargando" class="container mt-5">
+  <div class="alert alert-danger fs-5">{{ error }}</div>
+  <a routerLink="/eventos" class="btn btn-outline-dark mt-2">← Volver a eventos</a>
+</div>
 
-    <div class="card shadow">
-      <div class="card-body">
+<div *ngIf="evento && !cargando">
 
-        <h5>Información del evento</h5>
-
-        <p><strong>Fecha:</strong> 15 Marzo</p>
-        <p><strong>Hora:</strong> 10:00 AM</p>
-        <p><strong>Lugar:</strong> Auditorio Principal</p>
-        <p><strong>Organizador:</strong> Departamento de TI</p>
-
-        <a routerLink="/contactos"   class="btn btn-primary">
-          Contactar organizador
-        </a>
-      </div>
+  <!-- Hero Banner -->
+  <div class="position-relative overflow-hidden" style="height: 420px;">
+    <img [src]="evento.imagen || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1400'"
+         [alt]="evento.titulo"
+         class="w-100 h-100"
+         style="object-fit: cover; filter: brightness(0.45);">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-5">
+      <a routerLink="/eventos" class="text-white text-decoration-none mb-3 d-inline-block" style="opacity:0.8; font-size:.9rem;">
+        ← Volver a eventos
+      </a>
+      <span *ngIf="evento.categoria" class="badge bg-primary mb-2 px-3 py-2 fs-6 d-inline-block align-self-start">
+        {{ evento.categoria }}
+      </span>
+      <h1 class="text-white fw-bold display-5 mb-2">{{ evento.titulo }}</h1>
+      <span class="badge px-3 py-2 d-inline-block align-self-start"
+            [ngClass]="evento.estado === 'PUBLICADO' ? 'bg-success' : 'bg-warning text-dark'">
+        {{ evento.estado }}
+      </span>
     </div>
-
   </div>
 
+  <!-- Contenido principal -->
+  <div class="container py-5">
+    <div class="row g-5">
+
+      <!-- Descripción -->
+      <div class="col-lg-8">
+        <h3 class="fw-bold mb-3">Acerca de este evento</h3>
+        <p class="lead text-muted" style="line-height: 1.8;">{{ evento.descripcion }}</p>
+
+        <hr class="my-4">
+
+        <!-- Chips de info -->
+        <div class="d-flex flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-2 bg-light rounded-pill px-4 py-2" *ngIf="evento.fecha">
+            <span style="font-size:1.2rem">📅</span>
+            <span class="fw-semibold">{{ evento.fecha }}</span>
+          </div>
+          <div class="d-flex align-items-center gap-2 bg-light rounded-pill px-4 py-2" *ngIf="evento.ubicacion">
+            <span style="font-size:1.2rem">📍</span>
+            <span class="fw-semibold">{{ evento.ubicacion }}</span>
+          </div>
+          <div class="d-flex align-items-center gap-2 bg-light rounded-pill px-4 py-2" *ngIf="evento.cupoMaximo">
+            <span style="font-size:1.2rem">👥</span>
+            <span class="fw-semibold">{{ evento.cupoMaximo }} lugares disponibles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card lateral -->
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden sticky-top" style="top: 90px;">
+          <div class="card-body p-4">
+            <h5 class="fw-bold mb-4">Registro e Información</h5>
+
+            <div class="mb-3 p-3 bg-light rounded-3" *ngIf="evento.fecha">
+              <div class="text-muted small mb-1">Fecha del evento</div>
+              <div class="fw-bold fs-5">{{ evento.fecha }}</div>
+            </div>
+
+            <div class="mb-3 p-3 bg-light rounded-3" *ngIf="evento.ubicacion">
+              <div class="text-muted small mb-1">Ubicación</div>
+              <div class="fw-bold">{{ evento.ubicacion }}</div>
+            </div>
+
+            <div class="mb-4 p-3 bg-light rounded-3" *ngIf="evento.cupoMaximo">
+              <div class="text-muted small mb-1">Cupo disponible</div>
+              <div class="fw-bold">{{ evento.cupoMaximo }} personas</div>
+            </div>
+
+            <a (click)="contactarOrganizador()" class="btn btn-primary w-100 rounded-pill py-3 fw-semibold mb-2" style="cursor:pointer">
+              Contactar organizador
+            </a>
+            <a routerLink="/eventos" class="btn btn-outline-secondary w-100 rounded-pill py-2">
+              Ver más eventos
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
