@@ -20,41 +20,20 @@
 
 <div class="container mt-5">
   <h2 class="mb-4">Avisos Importantes</h2>
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <a href="https://www.upp.edu.mx" target="_blank" style="text-decoration: none; color: inherit;">
-        <div class="card shadow">
+  <div class="row" *ngIf="avisos.length > 0">
+    @for (aviso of avisos; track aviso._id) {
+      <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
           <div class="card-body">
-            <h5 class="card-title">Suspensión de clases</h5>
-            <p class="card-text">El día viernes 22 de marzo se suspenderán clases por mantenimiento en las instalaciones.</p>
-            <span class="badge bg-primary">Aviso institucional</span>
+            <h5 class="card-title">{{ aviso.titulo }}</h5>
+            <p class="card-text">{{ aviso.descripcion }}</p>
+            <span class="badge bg-primary">{{ aviso.etiquetaTexto || aviso.tipo || 'Aviso institucional' }}</span>
           </div>
         </div>
-      </a>
-    </div>
-    <div class="col-md-4 mb-4">
-      <a href="https://www.upp.edu.mx" target="_blank" style="text-decoration: none; color: inherit;">
-        <div class="card shadow">
-          <div class="card-body">
-            <h5 class="card-title">Convocatoria de becas</h5>
-            <p class="card-text">Se abre la convocatoria para solicitar becas académicas del periodo 2026.</p>
-            <span class="badge bg-primary">Convocatoria</span>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-md-4 mb-4">
-      <a href="https://www.upp.edu.mx" target="_blank" style="text-decoration: none; color: inherit;">
-        <div class="card shadow">
-          <div class="card-body">
-            <h5 class="card-title">Registro de talleres</h5>
-            <p class="card-text">Se abre el registro para los talleres culturales del semestre.</p>
-            <span class="badge bg-primary">Actividad</span>
-          </div>
-        </div>
-      </a>
-    </div>
+      </div>
+    }
   </div>
+  <p class="text-muted" *ngIf="avisos.length === 0">No hay avisos publicados en este momento.</p>
 </div>
 
 <div class="container mt-5">
@@ -83,7 +62,7 @@
 <section class="eventos-mes text-black mt-5">
   <div class="container">
     <h2 class="text-center mb-5">Eventos del Mes</h2>
-    <div class="row" @fadeInUp>
+    <div class="row" @staggeredFadeIn>
       @for (evento of eventos.slice(0, 3); track evento.titulo) {
         <div class="col-md-4 mb-4">
           <div class="card shadow h-100">
@@ -92,7 +71,7 @@
               <h5 class="card-title">{{ evento.titulo }}</h5>
               <p class="card-text">{{ evento.descripcion }}</p>
               <p class="text-muted">{{ evento.fecha }} - {{ evento.ubicacion }}</p>
-              <a routerLink="/detalle" class="btn btn-primary">Más información</a>
+              <a (click)="verEvento(evento)" class="btn btn-primary" style="cursor:pointer">Más información</a>
             </div>
           </div>
         </div>
@@ -103,7 +82,7 @@
 
 <div class="container mt-5 mb-5">
   <h2 class="mb-4">Próximos Eventos</h2>
-  <div class="row" @fadeInUp>
+  <div class="row" @staggeredFadeIn>
     @for (evento of eventos.slice(3, 6); track evento.titulo) {
       <div class="col-md-4 mb-4">
         <div class="card shadow h-100">
@@ -112,7 +91,7 @@
             <h5 class="card-title">{{ evento.titulo }}</h5>
             <p class="card-text">{{ evento.descripcion }}</p>
             <p class="text-muted">{{ evento.fecha }} - {{ evento.ubicacion }}</p>
-            <a routerLink="/detalle" class="btn btn-primary">Ver evento</a>
+            <a (click)="verEvento(evento)" class="btn btn-primary" style="cursor:pointer">Ver evento</a>
           </div>
         </div>
       </div>
