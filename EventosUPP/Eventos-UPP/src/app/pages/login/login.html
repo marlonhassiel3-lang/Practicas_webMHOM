@@ -1,27 +1,27 @@
 <div class="container mt-5">
-
 <div class="row justify-content-center">
-
 <div class="col-md-5">
-
 <div class="card shadow p-4">
 
-<h3 class="text-center mb-4">Acceso Profesor</h3>
+<h3 class="text-center mb-4">Panel de Profesor</h3>
+<p class="text-center text-muted small mb-4">Accede con tu cuenta institucional</p>
+
+<div class="alert alert-danger" *ngIf="errorLogin">{{ errorLogin }}</div>
 
 <form (ngSubmit)="login()">
 
 <div class="mb-3">
 <label>Correo institucional</label>
-<input type="email" class="form-control" required>
+<input type="email" class="form-control" [(ngModel)]="email" name="email" required placeholder="tu@upp.edu.mx">
 </div>
 
 <div class="mb-3">
 <label>Contraseña</label>
-<input type="password" class="form-control" required>
+<input type="password" class="form-control" [(ngModel)]="password" name="password" required placeholder="••••••••">
 </div>
 
-<button class="btn btn-dark w-100">
-Ingresar
+<button class="btn btn-dark w-100" [disabled]="cargando">
+  {{ cargando ? 'Verificando...' : 'Ingresar' }}
 </button>
 
 </form>
@@ -31,7 +31,5 @@ Ingresar
   ¿Eres administrador? Entra aquí
 </a>
 </div>
-
 </div>
-
 </div>

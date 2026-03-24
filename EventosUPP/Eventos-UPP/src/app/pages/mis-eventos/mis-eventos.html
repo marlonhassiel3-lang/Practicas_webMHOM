@@ -1,37 +1,39 @@
 <div class="container mt-5">
+  <h2 class="mb-4">Mis Eventos</h2>
+  
+  <div *ngIf="cargando" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
 
-<h2>Mis Eventos</h2>
-<!-- 
-<div *ngIf="eventos.length === 0" class="alert alert-info">
-No tienes eventos registrados
-</div> -->
-<!-- 
-<div class="row">
+  <div *ngIf="error" class="alert alert-danger shadow-sm">
+    {{ error }}
+  </div>
 
-<div class="col-md-4 mb-4" *ngFor="let evento of eventos; let i = index">
+  <div *ngIf="!cargando && eventos.length === 0 && !error" class="alert alert-info shadow-sm">
+    No tienes eventos registrados actualmente.
+  </div>
 
-<div class="card shadow">
-
-<div class="card-body">
-
-<h5>{{ evento.nombre }}</h5>
-
-<p>
-<strong>Fecha:</strong> {{ evento.fecha }} <br>
-<strong>Lugar:</strong> {{ evento.lugar }} <br>
-<strong>Organizador:</strong> {{ evento.organizador }}
-</p>
-
-<button class="btn btn-danger w-100" (click)="eliminarEvento(i)">
-Eliminar
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div> -->
-
+  <div class="row" *ngIf="!cargando && eventos.length > 0">
+    @for (evento of eventos; track evento._id) {
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100 d-flex flex-column">
+          <div class="card-body">
+            <h5 class="fw-bold">{{ evento.titulo }}</h5>
+            <p class="mb-2">
+              <strong>Fecha:</strong> {{ evento.fecha }} <br>
+              <strong>Lugar:</strong> {{ evento.ubicacion }} <br>
+              <strong>Estado:</strong> <span class="badge" [ngClass]="evento.estado === 'PUBLICADO' ? 'bg-success' : 'bg-warning text-dark'">{{ evento.estado || 'PUBLICADO' }}</span>
+            </p>
+            <div class="mt-auto pt-3">
+              <button class="btn btn-outline-danger w-100" (click)="eliminarEvento(evento)">
+                Solicitar Eliminación
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
 </div>

@@ -61,15 +61,16 @@ Ver eventos
 
 <div class="card-body">
 
-<h5 class="card-title">Estadísticas</h5>
+<h5 class="card-title">Mis Estadísticas</h5>
 
-<p class="card-text">
-Visualiza el impacto de tus eventos.
+<p class="card-text mb-4">
+Visualiza el impacto de tus eventos publicados.
 </p>
 
-<button class="btn btn-secondary" disabled>
-Próximamente
-</button>
+<div *ngIf="cargandoEventos" class="spinner-border spinner-border-sm text-primary mb-3"></div>
+<h2 *ngIf="!cargandoEventos" class="display-4 fw-bold text-primary mb-0">{{ totalEventos }}</h2>
+<p *ngIf="!cargandoEventos" class="text-muted small">eventos publicados</p>
+
 
 </div>
 
