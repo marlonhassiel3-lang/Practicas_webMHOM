@@ -1,0 +1,1 @@
+{"functions":[{"bundler":"esbuild","buildData":{"runtimeAPIVersion":1},"mainFile":"/home/_flaaaw_/Descargas/Eventos-UPP/netlify/functions/api.ts","name":"api","priority":10,"runtimeVersion":"nodejs24.x","path":"/home/_flaaaw_/Descargas/Eventos-UPP/.netlify/functions/api.zip","runtime":"js"}],"system":{"arch":"x64","platform":"linux"},"timestamp":1774546519313,"version":1}
