@@ -1,0 +1,113 @@
+<!-- Hero -->
+<div class="contact-hero text-white text-center">
+  <div class="container">
+    <h1 class="display-5 fw-bold mb-3">Contáctanos</h1>
+    <p class="lead opacity-75 mb-0">¿Tienes dudas sobre eventos o actividades? Estamos aquí para ayudarte.</p>
+  </div>
+</div>
+
+<div class="container py-5 mb-5">
+  <div class="row g-5">
+
+    <!-- Formulario -->
+    <div class="col-lg-7">
+      <div class="card contact-card p-3 p-md-5">
+
+        <!-- Confirmación enviado -->
+        <div class="success-box" *ngIf="enviado">
+          <div style="font-size: 3rem;">✅</div>
+          <h4 class="fw-bold mt-3 mb-2">¡Mensaje enviado!</h4>
+          <p class="text-muted mb-3">Nos pondremos en contacto contigo a la brevedad posible a través de tu correo.</p>
+          <button class="btn btn-outline-success rounded-pill px-4" (click)="enviado = false">Enviar otro mensaje</button>
+        </div>
+
+        <!-- Formulario -->
+        <div *ngIf="!enviado">
+          <h3 class="fw-bold mb-1">Escríbenos</h3>
+          <p class="text-muted mb-4">Completa el formulario y te responderemos pronto.</p>
+
+          <form (ngSubmit)="enviar()">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Nombre completo <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" [(ngModel)]="form.nombre" name="nombre"
+                       placeholder="Ej. Juan García" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Correo electrónico <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" [(ngModel)]="form.correo" name="correo"
+                       placeholder="tu@email.com" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Asunto</label>
+                <select class="form-select" [(ngModel)]="form.asunto" name="asunto">
+                  <option value="">— Selecciona un tema —</option>
+                  <option value="info-evento">Información sobre un evento</option>
+                  <option value="registro">Problemas con registro</option>
+                  <option value="colaboracion">Propuesta de colaboración</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Mensaje <span class="text-danger">*</span></label>
+                <textarea class="form-control" rows="5" [(ngModel)]="form.mensaje" name="mensaje"
+                          placeholder="Escribe tu mensaje aquí..." required minlength="20" maxlength="1000"></textarea>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button type="submit" class="btn btn-contact text-white w-100" [disabled]="enviando">
+                {{ enviando ? 'Enviando...' : 'Enviar mensaje' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info lateral -->
+    <div class="col-lg-5 d-flex flex-column gap-4">
+
+      <div class="card contact-card p-3 p-md-4">
+        <div class="d-flex align-items-start gap-3">
+          <div class="info-icon bg-purple bg-opacity-10" style="background: #f3e5ff;">📍</div>
+          <div>
+            <h6 class="fw-bold mb-1">Ubicación</h6>
+            <p class="text-muted mb-0">Universidad Politécnica de Pachuca<br>Carretera Cd. Sahagún-Pachuca s/n<br>Ex-Hacienda de Santa Bárbara, Zempoala, Hidalgo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card contact-card p-3 p-md-4">
+        <div class="d-flex align-items-start gap-3">
+          <div class="info-icon" style="background: #e8f5e9;">📧</div>
+          <div>
+            <h6 class="fw-bold mb-1">Correo institucional</h6>
+            <p class="text-muted mb-0">eventos&#64;upp.edu.mx</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card contact-card p-3 p-md-4">
+        <div class="d-flex align-items-start gap-3">
+          <div class="info-icon" style="background: #fff3e0;">📞</div>
+          <div>
+            <h6 class="fw-bold mb-1">Teléfono</h6>
+            <p class="text-muted mb-0">771 000 0000<br><span class="small">Lun–Vie, 8:00 AM – 5:00 PM</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card contact-card p-3 p-md-4">
+        <div class="d-flex align-items-start gap-3">
+          <div class="info-icon" style="background: #e3f2fd;">🌐</div>
+          <div>
+            <h6 class="fw-bold mb-1">Sitio oficial</h6>
+            <a href="https://www.upp.edu.mx" target="_blank" class="text-decoration-none">www.upp.edu.mx</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

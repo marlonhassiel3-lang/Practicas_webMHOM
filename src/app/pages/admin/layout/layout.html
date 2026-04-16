@@ -1,0 +1,62 @@
+<div class="admin-shell d-flex">
+  <!-- Sidebar (Desktop) / Offcanvas (Mobile) -->
+  <aside class="offcanvas-lg offcanvas-start admin-sidebar p-0 p-lg-4" tabindex="-1" id="sidebarMenu">
+    
+    <!-- Mobile Offcanvas Header -->
+    <div class="offcanvas-header d-lg-none p-4 pb-0 border-bottom border-secondary border-opacity-25 pb-3 mb-3">
+      <div>
+        <h4 class="mb-1 text-white">UPP Admin</h4>
+        <small class="text-white-50" *ngIf="auth.isAdmin()">Super administrador</small>
+        <small class="text-white-50" *ngIf="!auth.isAdmin()">Panel de Profesor</small>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"></button>
+    </div>
+
+    <!-- Desktop Title -->
+    <div class="mb-4 d-none d-lg-block">
+      <h4 class="mb-1 text-white">UPP Admin</h4>
+      <small class="text-white-50" *ngIf="auth.isAdmin()">Super administrador</small>
+      <small class="text-white-50" *ngIf="!auth.isAdmin()">Panel de Profesor</small>
+    </div>
+
+    <div class="offcanvas-body flex-column p-4 p-lg-0 pt-0">
+      <nav class="nav flex-column gap-2 w-100">
+        <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Dashboard</a>
+        <a routerLink="/admin/profesores" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Profesores/Admin</a>
+        <a routerLink="/admin/publicaciones" routerLinkActive="active" class="nav-link" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Publicaciones</a>
+        <a routerLink="/admin/avisos" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Avisos</a>
+        <a routerLink="/admin/solicitudes" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Solicitudes</a>
+        <a routerLink="/admin/configuracion" routerLinkActive="active" class="nav-link" *ngIf="auth.isAdmin()" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Configuración</a>
+        <a routerLink="/profesor/mis-eventos" class="nav-link" *ngIf="auth.isProfesor()" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Mis Eventos Físicos</a>
+        <a routerLink="/" class="nav-link mt-lg-3 mt-4" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu">Volver al sitio</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="admin-main flex-grow-1">
+    <header class="admin-topbar px-4 py-3 d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <!-- Hamburger Menu (Mobile Only) -->
+        <button class="btn btn-light d-lg-none d-flex align-items-center justify-content-center p-2 shadow-sm rounded-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+          <span class="fs-4 lh-1">☰</span>
+        </button>
+
+        <a routerLink="/" class="back-home-link d-none d-md-block">
+          <span>←</span>
+        </a>
+        <div>
+          <h5 class="mb-0">Panel de Administración</h5>
+          <small class="text-muted">Gestión general de la plataforma</small>
+        </div>
+      </div>
+      <button (click)="logout()" class="btn btn-outline-dark btn-sm">
+        Salir
+      </button>
+     
+    </header>
+
+    <section class="p-4">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

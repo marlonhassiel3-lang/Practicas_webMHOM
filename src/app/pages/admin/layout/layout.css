@@ -1,0 +1,51 @@
+.admin-shell{
+  min-height: 100vh;
+  background: #f6f3fb;
+}
+
+.admin-sidebar {
+  background: #2e1846 !important;
+  color: #fff !important;
+}
+
+@media (min-width: 992px) {
+  .admin-sidebar {
+    width: 280px;
+  }
+}
+
+.admin-sidebar .nav-link{
+  color: rgba(255,255,255,0.88);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.admin-sidebar .nav-link.active,
+.admin-sidebar .nav-link:hover{
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+.admin-topbar{
+  background: #fff;
+  border-bottom: 1px solid #e9e0f5;
+}
+
+.admin-main{
+  min-width: 0;
+}
+
+.back-home-link {
+  color: #9d8bb5;
+  text-decoration: none;
+  font-size: 24px;
+  line-height: 1;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.back-home-link:hover {
+  color: #2e1846;
+  background: rgba(46, 24, 70, 0.08);
+}

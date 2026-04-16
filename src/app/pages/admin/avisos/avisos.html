@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1">Avisos Oficiales</h2>
+    <p class="text-muted mb-0">Administración de comunicados institucionales</p>
+  </div>
+
+  <button class="btn btn-dark" (click)="abrirFormularioCrear()" *ngIf="!mostrarFormulario">Crear aviso</button>
+</div>
+
+<!-- Formulario (Crear/Editar) -->
+<div class="card p-4 mb-4 shadow-sm border-0" *ngIf="mostrarFormulario">
+  <h4 class="mb-3 fw-bold">{{ esEdicion ? 'Editar Aviso' : 'Nuevo Aviso' }}</h4>
+  <form (ngSubmit)="guardarAviso()">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Título</label>
+        <input type="text" class="form-control" name="titulo" [(ngModel)]="avisoActual.titulo" required minlength="5" maxlength="100">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Etiqueta Texto</label>
+        <input type="text" class="form-control" name="etiquetaTexto" [(ngModel)]="avisoActual.etiquetaTexto" placeholder="Ej: IMPORTANTE" required>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Color de Etiqueta</label>
+        <select class="form-select" name="etiquetaColor" [(ngModel)]="avisoActual.etiquetaColor">
+          <option value="bg-primary">Azul (Primario)</option>
+          <option value="bg-danger">Rojo (Peligro)</option>
+          <option value="bg-warning text-dark">Amarillo (Advertencia)</option>
+          <option value="bg-success">Verde (Éxito)</option>
+          <option value="bg-info text-dark">Celeste (Info)</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-control" name="descripcion" [(ngModel)]="avisoActual.descripcion" rows="3" required minlength="20" maxlength="1000"></textarea>
+      </div>
+    </div>
+    <div class="mt-4 d-flex gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="cargando">Guardar</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="cancelarFormulario()">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+<div class="row g-4" *ngIf="!cargando">
+  @for (aviso of avisos; track aviso._id) {
+    <div class="col-md-4">
+      <div class="card admin-card p-4 h-100 d-flex flex-column">
+        <div class="mb-3">
+          <span class="badge {{ aviso.etiquetaColor || 'bg-primary' }}">{{ aviso.etiquetaTexto || 'Aviso' }}</span>
+        </div>
+        <h5>{{ aviso.titulo }}</h5>
+        <p class="text-muted">{{ aviso.descripcion }}</p>
+        <div class="d-flex gap-2 mt-auto pt-3">
+          <button class="btn btn-outline-dark btn-sm" (click)="editarAviso(aviso)">Editar</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="eliminarAviso(aviso._id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Mensaje si no hay avisos en Mongo -->
+  <div *ngIf="avisos.length === 0" class="col-12 text-center text-muted py-5">
+    <p>No hay avisos registrados actualmente.</p>
+  </div>
+</div>
