@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1">Directorio de Usuarios</h2>
+    <p class="text-muted mb-0">Gestión de profesores y administradores</p>
+  </div>
+
+  <button class="btn btn-dark" (click)="toggleFormulario()">
+    <i class="bi bi-person-plus me-2"></i> {{ mostrarFormulario ? 'Ocultar Formulario' : 'Agregar Usuario' }}
+  </button>
+</div>
+
+<!-- Modal / Panel de Formulario -->
+<div class="card admin-card p-4 mb-4" *ngIf="mostrarFormulario">
+  <h5 class="mb-3">Registrar Nuevo Usuario</h5>
+  <form (ngSubmit)="guardarProfesor()">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Nombre completo</label>
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="nuevoProfesor.nombre" required placeholder="Ej. Dra. Carmen Lira">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Correo institucional</label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="nuevoProfesor.email" required placeholder="usuario@upp.edu.mx">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Contraseña de acceso</label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="nuevoProfesor.password" required placeholder="••••••••">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Departamento</label>
+        <input type="text" class="form-control" name="departamento" [(ngModel)]="nuevoProfesor.departamento" placeholder="Ej. Sistemas y Computación">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Rol del Usuario</label>
+        <select class="form-select" name="rol" [(ngModel)]="nuevoProfesor.rol">
+          <option value="PROFESOR">Profesor (Organizador)</option>
+          <option value="ADMIN">Administrador (Control Total)</option>
+        </select>
+      </div>
+    </div>
+    <div class="mt-4 text-end">
+      <button type="button" class="btn btn-outline-secondary me-2" (click)="toggleFormulario()">Cancelar</button>
+      <button type="submit" class="btn btn-success">Guardar Usuario</button>
+    </div>
+  </form>
+</div>
+
+<div class="card admin-card" *ngIf="!cargando">
+  <div class="table-responsive">
+    <table class="table align-middle mb-0">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Área</th>
+          <th>Estado</th>
+          <th class="text-end">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="cargando">
+          <td colspan="5" class="text-center py-4">
+            <div class="spinner-border spinner-border-sm text-primary" role="status"></div> Cargando datos...
+          </td>
+        </tr>
+        @for (profesor of profesores; track profesor._id) {
+          <tr>
+            <td class="fw-medium">{{ profesor.nombre }}</td>
+            <td class="text-muted">{{ profesor.email }}</td>
+            <td>{{ profesor.departamento || 'Sin asignar' }}</td>
+            <td>
+              <span class="badge" [ngClass]="profesor.activo ? 'bg-success' : 'bg-danger'">
+                {{ profesor.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-outline-dark me-2" disabled>Editar</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="eliminarProfesor(profesor._id, profesor.nombre)">Eliminar</button>
+            </td>
+          </tr>
+        }
+        <tr *ngIf="!cargando && profesores.length === 0">
+          <td colspan="5" class="text-center text-muted py-4">No se encontraron profesores registrados.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

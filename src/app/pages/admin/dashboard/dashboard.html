@@ -1,0 +1,70 @@
+<div class="mb-4">
+  <h2 class="fw-bold">Dashboard</h2>
+  <p class="text-muted mb-0">Resumen y estado vivo del sistema</p>
+</div>
+
+<div *ngIf="cargando" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+
+<div class="row g-4 mb-4" *ngIf="!cargando">
+  <div class="col-6 col-md-3">
+    <div class="card admin-card p-3 h-100">
+      <h6 class="text-muted text-truncate">Usuarios</h6>
+      <h3 class="mb-0">{{ stats.usuarios }}</h3>
+      <small class="text-success text-truncate d-block">Total en sistema</small>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <div class="card admin-card p-3 h-100">
+      <h6 class="text-muted text-truncate">Publicaciones</h6>
+      <h3 class="mb-0">{{ stats.eventos }}</h3>
+      <small class="text-warning text-truncate d-block">En base de datos</small>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <div class="card admin-card p-3 h-100">
+      <h6 class="text-muted text-truncate">Avisos</h6>
+      <h3 class="mb-0">{{ stats.avisos }}</h3>
+      <small class="text-info text-truncate d-block">Home</small>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <div class="card admin-card p-3 h-100">
+      <h6 class="text-muted text-truncate">Inscripciones</h6>
+      <h3 class="mb-0">{{ stats.solicitudes }}</h3>
+      <small class="text-danger text-truncate d-block">Eventos recientes</small>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-4" *ngIf="auth.isAdmin()">
+    <div class="card admin-card p-4 h-100">
+      <h5>Profesores</h5>
+      <p class="text-muted">Gestiona usuarios autorizados para publicar eventos.</p>
+      <button routerLink="/admin/profesores" class="btn btn-dark w-100" >Ir a profesores</button>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card admin-card p-4 h-100">
+      <h5>Publicaciones</h5>
+      <p class="text-muted">Revisa publicaciones, aprueba o filtra contenido vivo en la web.</p>
+      <button routerLink="/admin/publicaciones" class="btn btn-dark w-100" >Revisar publicaciones</button>
+    </div>
+  </div>
+
+  <div class="col-md-4" *ngIf="auth.isAdmin()">
+    <div class="card admin-card p-4 h-100">
+      <h5>Configuración</h5>
+      <p class="text-muted">Personaliza la identidad visual y datos del sistema.</p>
+      <button routerLink="/admin/configuracion" class="btn btn-dark w-100" >Abrir configuración</button>
+    </div>
+  </div>
+</div>

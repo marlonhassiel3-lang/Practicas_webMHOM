@@ -1,0 +1,49 @@
+<div class="container mt-5 mb-5" style="max-width: 700px;">
+
+  <div class="d-flex align-items-center mb-4 gap-3">
+    <button class="btn btn-outline-secondary rounded-circle px-3 py-2" (click)="enviarMensaje()" *ngIf="false">←</button>
+    <h2 class="mb-0 fw-bold">Contacto con el Organizador</h2>
+  </div>
+
+  <div class="card border-0 shadow-lg p-3 p-md-5 rounded-4">
+
+    <!-- Mensaje de éxito -->
+    <div *ngIf="enviado" class="text-center py-5">
+      <div style="font-size: 4rem;">✅</div>
+      <h3 class="fw-bold mt-3">Mensaje enviado</h3>
+      <p class="text-muted">El organizador ha recibido tu solicitud y se pondrá en contacto pronto. Redirigiendo...</p>
+    </div>
+
+    <div *ngIf="!enviado">
+      <div class="bg-light p-4 rounded-3 mb-4 border-start border-4 border-primary">
+        <h5 class="fw-bold mb-1">Evento: {{ evento?.titulo || 'Cargando...' }}</h5>
+        <p class="mb-0 text-muted"><strong>Organizador:</strong> {{ evento?.organizador_nombre || evento?.organizador_id || 'Coordinación de Eventos UPP' }}</p>
+      </div>
+
+      <form (ngSubmit)="enviarMensaje()">
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Tu nombre completo</label>
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="form.nombre" name="nombre" required placeholder="Ej. Ana Pérez">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Correo electrónico</label>
+          <input type="email" class="form-control form-control-lg" [(ngModel)]="form.correo" name="correo" required placeholder="tu@email.com">
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">Mensaje para el organizador</label>
+          <textarea class="form-control form-control-lg" rows="5" [(ngModel)]="form.mensaje" name="mensaje" required minlength="20" maxlength="1000" placeholder="Escribe tus dudas sobre el evento..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold rounded-pill" [disabled]="enviando">
+          {{ enviando ? 'Enviando mensaje...' : 'Enviar mensaje seguro' }}
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,95 @@
+<div class="container mt-5">
+
+<h2>Panel del Profesor</h2>
+
+<p class="text-muted">
+Bienvenido al sistema de gestión de eventos universitarios
+</p>
+
+  <div class="row mt-4 g-4">
+    <!-- Crear evento -->
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card shadow h-100">
+
+<div class="card-body">
+
+<h5 class="card-title">Crear Evento</h5>
+
+<p class="card-text">
+Publica un nuevo evento para los estudiantes.
+</p>
+
+<a routerLink="/profesor/crear-evento" class="btn btn-primary">
+Crear
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+    <!-- Mis eventos -->
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card shadow h-100">
+
+<div class="card-body">
+
+<h5 class="card-title">Mis Eventos</h5>
+
+<p class="card-text">
+Consulta y administra tus eventos publicados.
+</p>
+
+<a routerLink="/profesor/mis-eventos" class="btn btn-primary">
+Ver eventos
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+    <!-- Mis Mensajes -->
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card shadow h-100">
+        <div class="card-body">
+          <h5 class="card-title">Mis Mensajes</h5>
+          <p class="card-text">
+            Consultas de estudiantes sobre tus eventos.
+          </p>
+          <a routerLink="/profesor/mis-mensajes" class="btn btn-primary mt-auto">
+            Bandeja de entrada
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadísticas (simulado) -->
+    <div class="col-12 col-md-6 col-lg-3">
+
+<div class="card shadow h-100">
+
+<div class="card-body">
+
+<h5 class="card-title">Mis Estadísticas</h5>
+
+<p class="card-text mb-4">
+Visualiza el impacto de tus eventos publicados.
+</p>
+
+<div *ngIf="cargandoEventos" class="spinner-border spinner-border-sm text-primary mb-3"></div>
+<h2 *ngIf="!cargandoEventos" class="display-4 fw-bold text-primary mb-0">{{ totalEventos }}</h2>
+<p *ngIf="!cargandoEventos" class="text-muted small">eventos publicados</p>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

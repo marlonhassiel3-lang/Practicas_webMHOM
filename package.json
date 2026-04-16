@@ -1,0 +1,65 @@
+{
+  "name": "eventos-upp",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "concurrently \"npx tsx src/api.ts\" \"ng serve --proxy-config proxy.conf.json\"",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "serve:ssr:Eventos-UPP": "node dist/Eventos-UPP/server/server.mjs"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "dependencies": {
+    "@angular/animations": "^21.2.0",
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/platform-server": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@angular/ssr": "^21.1.3",
+    "bootstrap": "^5.3.8",
+    "cors": "^2.8.6",
+    "express": "^5.1.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.3.1",
+    "helmet": "^8.1.0",
+    "mongodb": "^7.1.1",
+    "mongoose": "^9.3.1",
+    "rxjs": "~7.8.0",
+    "serverless-http": "^4.0.0",
+    "sweetalert2": "^11.26.24",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.1"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.3",
+    "@angular/cli": "^21.1.3",
+    "@angular/compiler-cli": "^21.1.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.1",
+    "@types/express-mongo-sanitize": "^1.3.2",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^20.17.19",
+    "concurrently": "^9.2.1",
+    "jsdom": "^27.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}

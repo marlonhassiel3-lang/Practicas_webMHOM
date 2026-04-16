@@ -1,0 +1,100 @@
+<div class="panel-profesor-btn">
+  <a routerLink="/login" class="btn btn-dark">
+    Panel de Profesor
+  </a>
+</div>
+
+<section class="hero text-white text-center d-flex align-items-center" @fadeInUp>
+  <div class="container">
+    <h1 class="display-4 fw-bold">
+      Portal de Eventos Universitarios
+    </h1>
+    <p class="lead mt-3">
+      Consulta talleres, conferencias y actividades de la Universidad Politécnica de Pachuca
+    </p>
+    <a routerLink="/eventos" class="btn btn-light btn-lg mt-3">
+      Ver eventos
+    </a>
+  </div>
+</section>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Avisos Importantes</h2>
+  <div class="row" *ngIf="avisos.length > 0">
+    @for (aviso of avisos; track aviso._id) {
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow h-100" appScrollAnimate="fade-up">
+          <div class="card-body">
+            <h5 class="card-title">{{ aviso.titulo }}</h5>
+            <p class="card-text">{{ aviso.descripcion }}</p>
+            <span class="badge bg-primary">{{ aviso.etiquetaTexto || aviso.tipo || 'Aviso institucional' }}</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <p class="text-muted" *ngIf="avisos.length === 0">No hay avisos publicados en este momento.</p>
+</div>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Eventos Destacados</h2>
+  <div id="carouselEventos" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      @for (evento of eventos.slice(0, 3); track evento.titulo; let i = $index) {
+        <div class="carousel-item" [class.active]="i === 0">
+          <img [src]="evento.imagen" class="d-block w-100 carousel-img" [alt]="evento.titulo">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+            <h5>{{ evento.titulo }}</h5>
+            <p>{{ evento.descripcion }}</p>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselEventos" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselEventos" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
+<section class="eventos-mes text-black mt-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Eventos del Mes</h2>
+    <div class="row" @staggeredFadeIn>
+      @for (evento of eventos.slice(0, 3); track evento.titulo) {
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <div class="card shadow h-100" appScrollAnimate="fade-up">
+            <img [src]="evento.imagen" class="card-img-top" [alt]="evento.titulo" style="height: 200px; object-fit: cover;">
+            <div class="card-body text-dark">
+              <h5 class="card-title">{{ evento.titulo }}</h5>
+              <p class="card-text">{{ evento.descripcion }}</p>
+              <p class="text-muted">{{ evento.fecha }} - {{ evento.ubicacion }}</p>
+              <a (click)="verEvento(evento)" class="btn btn-primary" style="cursor:pointer">Más información</a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<div class="container mt-5 mb-5">
+  <h2 class="mb-4">Próximos Eventos</h2>
+  <div class="row" @staggeredFadeIn>
+    @for (evento of eventos.slice(3, 6); track evento.titulo) {
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow h-100" appScrollAnimate="fade-up">
+          <img [src]="evento.imagen" class="card-img-top" [alt]="evento.titulo" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">{{ evento.titulo }}</h5>
+            <p class="card-text">{{ evento.descripcion }}</p>
+            <p class="text-muted">{{ evento.fecha }} - {{ evento.ubicacion }}</p>
+            <a (click)="verEvento(evento)" class="btn btn-primary" style="cursor:pointer">Ver evento</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="mb-1 fw-bold text-dark">Mis Mensajes</h2>
+      <p class="text-muted mb-0">Mensajes enviados a tus eventos por estudiantes y usuarios</p>
+    </div>
+    <div>
+      <a routerLink="/profesor" class="btn btn-outline-secondary me-2">Volver al Panel</a>
+      <button class="btn btn-primary" (click)="marcarLeidos()" [disabled]="cargando">Marcar todo como leído</button>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger shadow-sm">
+    {{ error }}
+  </div>
+
+  <!-- Skeleton Loader -->
+  <div class="row g-4" *ngIf="cargando">
+    <div class="col-12" *ngFor="let i of [1,2,3]">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <p class="placeholder-glow mb-2"><span class="placeholder col-4"></span></p>
+          <p class="placeholder-glow mb-0"><span class="placeholder col-8"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!cargando && mensajes.length === 0 && !error" class="alert alert-info shadow-sm d-flex align-items-center">
+    <i class="bi bi-info-circle fs-4 me-3"></i>
+    <div>
+      <strong>Bandeja vacía</strong><br>
+      No tienes mensajes nuevos ni consultas sobre tus eventos.
+    </div>
+  </div>
+
+  <div class="row g-4" *ngIf="!cargando && mensajes.length > 0">
+    <div class="col-12" *ngFor="let msj of mensajes">
+      <div class="card shadow-sm border-0 rounded-3 h-100" [ngClass]="{'border-start border-4 border-primary': msj.estado === 'NUEVO'}">
+        <div class="card-body p-4 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <h5 class="mb-1 fw-bold">{{ msj.nombre }}</h5>
+              <a [href]="'mailto:' + msj.email" class="text-decoration-none text-muted small"><i class="bi bi-envelope me-1"></i> {{ msj.email }}</a>
+            </div>
+            <div class="text-end">
+              <span class="badge" [ngClass]="msj.estado === 'NUEVO' ? 'bg-primary' : 'bg-secondary'">{{ msj.estado }}</span>
+              <div class="small text-muted mt-1">{{ msj.fecha | date:'short' }}</div>
+            </div>
+          </div>
+          
+          <div class="bg-light p-3 rounded-3 mb-4 flex-grow-1">
+            <p class="mb-0 text-dark" style="white-space: pre-wrap;">{{ msj.mensaje }}</p>
+          </div>
+
+          <div class="d-flex justify-content-end gap-2 mt-auto">
+            <button class="btn btn-outline-primary btn-sm px-4 rounded-pill" (click)="responder(msj)">
+              <i class="bi bi-reply-fill me-1"></i> Responder
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
